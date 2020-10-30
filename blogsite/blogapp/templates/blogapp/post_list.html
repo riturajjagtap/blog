@@ -1,0 +1,18 @@
+{% extends 'blogapp/base.html' %}
+{% block content %}
+<!-- This page lists out all the posts -->
+<div class="centerstage">
+  {% for post in post_list %}
+    <div>
+      <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title|safe }}</a></h3>
+      <!-- <p>{{ post.written_text|truncatechars:65|safe }}</p> -->
+
+      <div class="date">
+        <p>Published on: {{ post.published_date|date:"D M Y"|safe }}</p>
+      </div>
+      <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count|safe }}</a>
+    </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
